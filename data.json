@@ -1,21 +1,26 @@
 {
   "instructors": [
     {
-      "id": "1",
-      "avatar_url": "https://source.unsplash.com/collection/3465564/500x500",
-      "name": "Luisa",
+      "id": 1,
+      "avatar_url": "https://images.unsplash.com/photo-1543975200-8e313fb04fc7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80",
+      "name": "Lucas",
       "birth": 942537600000,
-      "gender": "F",
-      "services": "Musculação"
-    },
-    {
-      "id": 3,
-      "avatar_url": "http://google.com",
-      "name": "John Duck",
-      "birth": 974073600000,
       "gender": "M",
-      "services": "Musculação",
-      "created_at": 1581274357115
+      "services": "Musculação, Aeróbico",
+      "created_at": 1581381402839
+    }
+  ],
+  "members": [
+    {
+      "id": 1,
+      "avatar_url": "https://images.unsplash.com/photo-1567013275689-c179a874478f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80",
+      "birth": 1082851200000,
+      "name": "Luisa",
+      "gender": "F",
+      "email": "lucass.de.abreuu@gmail.com",
+      "blood": "A0",
+      "weight": "40",
+      "height": "40"
     }
   ]
 }

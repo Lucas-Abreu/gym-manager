@@ -1,10 +1,9 @@
 const fs = require('fs');
 
-const data = require('./data.json');
+const data = require('../data.json');
 
-const { age, date } = require('./utils')
+const { age, date } = require('../utils')
 
-// show
 exports.show = function(req, res)
 {
     const { id } = req.params
@@ -29,7 +28,6 @@ exports.show = function(req, res)
     return res.render('instructors/show', { instructor })
 }
 
-// create
 exports.post = function(req, res)
 {
     
@@ -68,7 +66,6 @@ exports.post = function(req, res)
     })
 }
 
-// edit
 exports.edit = function(req, res)
 {
     const { id } = req.params
@@ -86,13 +83,12 @@ exports.edit = function(req, res)
     const instructor =
     {
         ...foundInstructor,
-        birth: date(foundInstructor.birth)
+        birth: date(foundInstructor.birth).iso
     }
 
     return res.render('instructors/edit', { instructor })
 }
 
-// put
 exports.put = function(req, res)
 {
     const { id } = req.body
@@ -116,7 +112,8 @@ exports.put = function(req, res)
     {
         ...foundInstructor,
         ...req.body,
-        birth: Date.parse(req.body.birth)
+        birth: Date.parse(req.body.birth),
+        id: Number(req.body.id)
     }
 
     data.instructors[index] = instructor
@@ -146,4 +143,28 @@ exports.delete = function(req, res)
 
         return res.redirect('/instructors')
     })
+}
+
+exports.index = function(req, res)
+{
+
+    let instructors = []
+
+    for (instructor of data.instructors)
+    {
+
+        const newInstructor = {
+            ...instructor,
+            services: instructor.services.split(',')
+        }
+
+        instructors.push(newInstructor)
+    }
+
+    return res.render('instructors/index', { instructors })
+}
+
+exports.create = function(req, res)
+{
+    return res.render('instructors/create')
 }

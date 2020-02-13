@@ -1,11 +1,11 @@
-const modalOverlay = document.querySelector('.modal-overlay')
-const cards = document.querySelectorAll('.card')
+const currentPage = location.pathname
 
-for (let card of cards)
+const menuItems = document.querySelectorAll('header .links a')
+
+for (item of menuItems)
 {
-    card.addEventListener("click", function()
+    if (currentPage.includes(item.getAttribute('href')))
     {
-        const videoId = card.getAttribute('id');
-        window.location.href = `/video?id=${videoId}`
-    })
+        item.classList.add('active')
+    }
 }

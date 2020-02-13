@@ -7,25 +7,25 @@
     <section class="avatar" style="background: url({{instructor.avatar_url}}) no-repeat center center / cover"></section>
     
     <section class="details">
-        <h3>Detalhes</h3>
+        <h3>Details</h3>
 
         <div class="item">
-            <div>Instrutor</div>
+            <div>Instructor</div>
             <div>{{instructor.name}}</div>
         </div>
 
         <div class="item">
-            <div>Idade</div>
+            <div>Age</div>
             <div>{{instructor.age}}</div>
         </div>
 
         <div class="item">
-            <div>Sexo</div>
-            <div>{{ 'Masculino' if instructor.gender == 'M' else 'Feminino'}}</div>
+            <div>Sex</div>
+            <div>{{ 'Male' if instructor.gender == 'M' else 'Female'}}</div>
         </div>
 
         <div class="item">
-            <div>Acompanhamento</div>
+            <div>Areas</div>
             <div>
                 {% for service in instructor.services %}
                     <span>{{service}}</span>
@@ -34,11 +34,11 @@
         </div>
 
         <div class="item">
-            <div>Desde</div>
+            <div>Since</div>
             <div>{{instructor.created_at}}</div>
         </div>
 
-        <a href="/instructors/{{ instructor.id }}/edit" class="button">Editar</a>
+        <a href="/instructors/{{ instructor.id }}/edit" class="button">Edit</a>
         
     </section>
 
