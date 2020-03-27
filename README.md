@@ -2,7 +2,6 @@
  <img alt="Launchbase" src="https://storage.googleapis.com/golden-wind/bootcamp-launchbase/logo.png" width="350px" />
  <div>
   <br>
-  <img alt="Foodfy" src="https://github.com/Rocketseat/bootcamp-launchbase-desafios-02/blob/master/layouts/assets/logo.png?raw=true" width="100px" />
  </div>
 </h1>
 
