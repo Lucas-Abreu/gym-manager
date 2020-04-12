@@ -3,7 +3,7 @@ const { date } = require('../../lib/utils')
 
 module.exports = {
     all(callback) {
-        db.query('SELECT * FROM instructors ORDER BY name ASC', (err, results) => {
+        db.query('SELECT * FROM members', (err, results) => {
             if (err) throw `Database error! ${err}`;
 
             callback(results.rows);
@@ -13,24 +13,28 @@ module.exports = {
     create(data, callback) {
 
         const query = `
-        INSERT INTO instructors (
-            name,
+        INSERT INTO members (
             avatar_url,
+            name,
             gender,
-            services,
+            email,
             birth,
-            created_at
-        ) VALUES ($1, $2, $3, $4, $5, $6)
+            blood,
+            weight,
+            height
+        ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
         RETURNING id
         `;
 
         const values = [
-            data.name,
             data.avatar_url,
+            data.name,
             data.gender,
-            data.services,
+            data.email,
             date(data.birth).iso,
-            date(Date.now()).iso
+            data.blood,
+            data.weight,
+            data.height
         ];
 
         db.query(query, values, (err, results) => {
@@ -41,7 +45,7 @@ module.exports = {
     },
     find(id, callback) {
 
-        db.query(`select * from instructors where id = $1`, [id], function(err, results) {
+        db.query(`select * from members where id = $1`, [id], function(err, results) {
             if (err) throw `Database error! ${err}`;   
 
             callback(results.rows[0]);
@@ -50,20 +54,26 @@ module.exports = {
     update(data, callback) {
 
         const query = `
-        UPDATE instructors SET
-            avatar_url=($1),
-            name=($2),
-            birth=($3),
-            gender=($4),
-            services=($5)
-        WHERE id = $6`;
+        UPDATE members SET
+            avatar_url = ($1),
+            name = ($2),
+            gender = ($3),
+            email = ($4),
+            birth = ($5),
+            blood = ($6),
+            weight = ($7),
+            height = ($8)
+        WHERE id = $9`;
 
         const values = [
             data.avatar_url,
             data.name,
             date(data.birth).iso,
             data.gender,
-            data.services,
+            data.email,
+            data.blood,
+            data.weight,
+            data.height,
             data.id
         ]
 
@@ -74,7 +84,7 @@ module.exports = {
         })
     },
     delete(id, callback) {
-        db.query(`DELETE FROM instructors WHERE id = $1`, [id], (err, results) => {
+        db.query(`DELETE FROM members WHERE id = $1`, [id], (err, results) => {
             if (err) throw `Database error! + ${err}`;
 
             return callback();
