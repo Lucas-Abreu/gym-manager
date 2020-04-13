@@ -4,6 +4,7 @@ const { date } = require('../../lib/utils')
 module.exports = {
     index(req, res) {
 
+
         Member.all(function(members) {
 
             return res.render('members/index', { members }) 
@@ -13,7 +14,11 @@ module.exports = {
     }, 
     create(req, res) {
 
-        return res.render('members/create')
+        
+        Member.instructorSelectOption((instructorOptions) => {
+            return res.render('members/create', { instructorOptions}) }
+        )
+
 
     }, 
     post(req, res) {
@@ -52,7 +57,10 @@ module.exports = {
 
             member.birth = date(member.birth).iso;
 
-            return res.render('members/edit', { member })
+            Member.instructorSelectOption((instructorOptions) => {
+                return res.render('members/edit', { member, instructorOptions }) }
+            )
+           
         })
 
     }, 

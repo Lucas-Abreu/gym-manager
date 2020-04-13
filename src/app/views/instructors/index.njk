@@ -9,6 +9,7 @@
             <tr>
                 <th>Instructor</th>
                 <th>Areas</th>
+                <th>Students</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -18,9 +19,8 @@
                 <td>
                     <span style="background-image: url({{instructor.avatar_url}}"></span>
                     {{instructor.name}}</td>
-                <td>
-                <span class="service">{{instructor.services}}</span>
-                </td>
+                <td><span class="service">{{instructor.services}}</span></td>
+                <td>{{instructor.total_students}}</span></td>
                 <td><a href="instructors/{{instructor.id}}">Show</a></td>
             </tr>
             {% endfor %}
