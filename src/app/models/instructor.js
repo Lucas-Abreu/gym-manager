@@ -84,5 +84,23 @@ module.exports = {
 
             return callback();
         })
+    },
+    findBy(filter, callback) {
+
+        var query = `
+        SELECT instructors.*, count(members) AS total_students
+        FROM instructors
+        LEFT JOIN members ON (instructors.id = members.instructor_id)
+        WHERE instructors.name ILIKE $1
+        OR instructors.services ILIKE $1
+        GROUP BY instructors.id
+        ORDER BY total_students DESC`
+
+        db.query(query, [`%${filter}%`], (err, results) => {
+            if (err) throw `Database error! ${err}`;
+
+            callback(results.rows);
+        })
+
     }
 }
